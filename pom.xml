@@ -45,4 +45,56 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <profiles>
+  	<profile>
+  		<id>test</id>
+  		<build>
+  			<resources>
+		  		<resource>
+		  			<directory>src/main/resources/conf-test</directory>
+		  			<filtering>true</filtering>
+		  		</resource>
+  			</resources>
+  		</build>
+  	</profile>
+  	<profile>
+  		<id>prod</id>
+  		<build>
+  			<resources>
+		  		<resource>
+		  			<directory>src/main/resources/conf-prod</directory>
+		  			<filtering>true</filtering>
+		  		</resource>
+  			</resources>
+  		</build>
+  	</profile>
+  </profiles>
+  
+  <build>
+  	<pluginManagement>
+  		<plugins>
+  			<plugin>
+  				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-jar-plugin</artifactId>
+  				<version>3.2.2</version>
+  			</plugin>
+  		</plugins>
+  	</pluginManagement>
+  	
+  	<plugins>
+  		<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+            	<archive>
+                	<!-- Création du Manifest pour la définition de la classe Main -->
+                    <manifest>
+						<mainClass>org.exemple.demo.App</mainClass>
+                    </manifest>
+                </archive>
+             </configuration>
+         </plugin>
+    </plugins>
+  </build>
 </project>
